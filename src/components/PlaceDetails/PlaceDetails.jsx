@@ -2,9 +2,14 @@ import React from "react";
 
 import "./PlaceDetails.css";
 
-const PlaceDetails = () => {
+const PlaceDetails = ({place}) => {
     return (
-        <div>PlaceDetails</div>
+        <div className = "card border-primary mb-3">
+            <div className="card-body">
+                <p>{place.name}</p>
+            </div>
+            
+        </div>
     );
 }
 

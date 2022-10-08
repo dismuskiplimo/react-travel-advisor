@@ -13,7 +13,7 @@ const App = () => {
         <>
             <Header />
             
-            <div className = "container">
+            <div className = "container-fluid mt-4">
                 <div className="row">
                     <div className = "col-xs-12 col-md-4">
                         <List/>
