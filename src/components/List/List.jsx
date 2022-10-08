@@ -3,18 +3,9 @@ import {PlaceDetails} from "../";
 
 import "./List.css";
 
-const List = () => {
+const List = ({places}) => {
     const [type, setType] = useState('restaurants');
     const [rating, setRating] = useState(0);
-
-    const places = [
-        {name: "Best Ever Hotel"},
-        {name: "1"},
-        {name: "2"},
-        {name: "3"},
-        {name: "4"},
-        {name: "5"},
-    ];
 
     useEffect(() => {
         
@@ -50,7 +41,7 @@ const List = () => {
             </div>
 
             <div className="mt-4">
-                { places?.map((place, index) => <PlaceDetails key = {index} place = {place} /> ) }
+                { places?.map((place, index) => <PlaceDetails key = {place.location_id} place = {place} /> ) }
             </div>
         </div>
     );

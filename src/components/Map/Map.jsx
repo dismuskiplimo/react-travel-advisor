@@ -3,20 +3,29 @@ import GoogleMapReact from "google-map-react";
 
 import "./Map.css";
 
-const Map = () => {
-    const coonridates = {lat: 0, lng: 0};
+const Map = ({setCoordinates, setBounds, coordinates, defaultCenterCoordinates}) => {
 
     return (
         <div className="" style={{height: 'calc(100vh - 100px)'}}>
             
             <GoogleMapReact
                 bootstrapURLKeys={{key: 'AIzaSyD5in7m-Kujo9m1nzW_Usguwjb-7GwQCLA'}}
-                defaultCenter={coonridates}
-                center={coonridates}
+                defaultCenter={defaultCenterCoordinates}
+                center={coordinates}
                 defaultZoom={14}
                 margin={[0,0,0,0]}
                 options={{}}
-                onChange={()=>{}}
+                onChange={(e)=>{
+                    setCoordinates({
+                        lat: e.center.lat,
+                        lng: e.center.lng
+                    });
+
+                    setBounds({
+                        ne: e.marginBounds.ne,
+                        sw: e.marginBounds.sw
+                    });
+                }}
                 onChildClick={()=>{}}
             >
             </GoogleMapReact>
