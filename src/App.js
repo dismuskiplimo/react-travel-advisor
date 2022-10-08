@@ -31,7 +31,7 @@ const App = () => {
             
             <div className = "container-fluid mt-4">
                 <div className="row">
-                    <div className = "col-xs-12 col-md-4">
+                    <div className = "col-xs-12 col-md-4" style={{maxHeight: "calc(100vh - 100px)", overflowY: "scroll"}}>
                         <List places = {places} />
                     </div>
 

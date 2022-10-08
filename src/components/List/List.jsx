@@ -41,7 +41,7 @@ const List = ({places}) => {
             </div>
 
             <div className="mt-4">
-                { places?.map((place, index) => <PlaceDetails key = {place.location_id} place = {place} /> ) }
+                { places?.map((place, index) => <PlaceDetails key = {index} place = {place} /> ) }
             </div>
         </div>
     );
