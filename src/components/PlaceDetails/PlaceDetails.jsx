@@ -1,16 +1,25 @@
 import React from "react";
+import Rating from "@material-ui/lab/Rating";
 
 import "./PlaceDetails.css";
+import defaultImage from "../../img/default.jpg";
 
 const PlaceDetails = ({place}) => {
     return (
         <div className = "card border-dark mb-3">
-            <img src={ place.photo ? place.photo.images.large.url : "" } className="card-img-top" alt={place.name}></img>
+            <img src={ place.photo ? place.photo.images.large.url : defaultImage } className="card-img-top" alt={place.name} />
             <div className="card-body">
                 <h5 className="card-title">{ place.name }</h5>
+                
+                
+                <div className="d-flex justify-content-between text-muted">
+                    <Rating value={place.rating} readOnly></Rating>
+                    <small>out of {place.num_reviews} reviews</small>
+                </div>
+                
                 <div className="d-flex justify-content-between text-muted">
                     <small>Price</small>
-                    <small>{place.price_level ? place.price_level: "N/A"}</small>
+                    <small>{place.price ? place.price: "N/A"}</small>
                 </div>
                 
                 <div className="d-flex justify-content-between text-muted">

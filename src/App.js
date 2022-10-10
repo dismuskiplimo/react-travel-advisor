@@ -20,7 +20,6 @@ const App = () => {
 
         getPlacesData(bounds.sw, bounds.ne)
         .then((response) => {
-            console.log(response);
             setPlaces(response);
         });
     }, [coordinates, bounds]);
