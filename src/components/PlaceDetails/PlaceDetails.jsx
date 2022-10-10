@@ -10,12 +10,12 @@ const PlaceDetails = ({place}) => {
                 <h5 className="card-title">{ place.name }</h5>
                 <div className="d-flex justify-content-between text-muted">
                     <small>Price</small>
-                    <small>{place.price_level}</small>
+                    <small>{place.price_level ? place.price_level: "N/A"}</small>
                 </div>
                 
                 <div className="d-flex justify-content-between text-muted">
                     <small>Ranking</small>
-                    <small>{place.ranking}</small>
+                    <small>{place.ranking ? place.ranking : "N/A"}</small>
                 </div>
 
                 {place?.awards?.map((award, index) => (
@@ -25,13 +25,37 @@ const PlaceDetails = ({place}) => {
                     </div>
                 ))}
 
-                <div>
+                {place?.address && (
+                    <div className="d-flex justify-content-between text-muted">
+                        <small><i className="fa-solid fa-location-dot"></i></small>
+                        <small style={{textAlign: "right", maxWidth: "80%"}}>{place.address}</small>
+                    </div>
+                )}
+
+                <div className="mt-3">
                     {place?.cuisine?.map((cuisineType, index) => (
-                        <div className="d-flex justify-content-between text-muted" key = {cuisineType + index}>
-                            <span className="badge bg-secondary"></span> 
-                        </div>
+                        <span className="badge bg-secondary" key = {cuisineType.key + index} style={{marginRight: "5px"}}>{cuisineType.name}</span> 
                     ))}
                 </div>
+
+                {place?.phone && (
+                    <div className="mt-3 d-flex justify-content-between text-muted">
+                        <small><i className="fa-solid fa-phone"></i></small>
+                        <small>
+                            <a href={"tel:" + place.phone} className="nav-link">{place.phone}</a>    
+                        </small>
+                    </div>
+                )}
+
+                <p className="mt-3">
+                    {place?.web_url && (
+                        <button className="btn btn-sm btn-outline-secondary" onClick={() => window.open(place.web_url, "_blank")}>Tripadvisor Page</button>
+                    )}
+
+                    {place?.website && (
+                        <button className="btn btn-sm btn-outline-secondary mx-3" onClick={() => window.open(place.website, "_blank")}>Visit Website</button>
+                    )}
+                </p>
             </div>
             
         </div>

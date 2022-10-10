@@ -36,7 +36,13 @@ const App = () => {
                     </div>
 
                     <div className = "col-xs-12 col-md-8">
-                        <Map setCoordinates={setCoordinates} setBounds={setBounds} coordinates={coordinates} defaultCenterCoordinates = {defaultCenterCoordinates} />
+                        <Map 
+                            setCoordinates={setCoordinates} 
+                            setBounds={setBounds} 
+                            coordinates={coordinates} 
+                            defaultCenterCoordinates = {defaultCenterCoordinates}
+                            places = {places}
+                        />
                     </div>
                 </div>
             </div>

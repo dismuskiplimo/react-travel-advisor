@@ -3,7 +3,7 @@ import GoogleMapReact from "google-map-react";
 
 import "./Map.css";
 
-const Map = ({setCoordinates, setBounds, coordinates, defaultCenterCoordinates}) => {
+const Map = ({setCoordinates, setBounds, coordinates, defaultCenterCoordinates, places}) => {
 
     return (
         <div className="" style={{height: 'calc(100vh - 100px)'}}>
@@ -28,6 +28,7 @@ const Map = ({setCoordinates, setBounds, coordinates, defaultCenterCoordinates})
                 }}
                 onChildClick={()=>{}}
             >
+                
             </GoogleMapReact>
         </div>
     );
