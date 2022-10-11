@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from "react";
+import React, {useEffect} from "react";
 import {PlaceDetails} from "../";
 
 import "./List.css";
 
-const List = ({places, childClicked, type, setType, rating, setRating}) => {
+const List = ({places, childClicked, type, setType, rating, setRating, isLoading}) => {
     
     useEffect(() => {
         console.log({childClicked});
@@ -39,7 +39,7 @@ const List = ({places, childClicked, type, setType, rating, setRating}) => {
             </div>
 
             <div className="mt-4">
-                { places?.map((place, index) => <PlaceDetails key = {index} place = {place} /> ) }
+                { isLoading ? ("") : places?.map((place, index) => <PlaceDetails key = {index} place = {place} /> ) }
             </div>
         </div>
     );

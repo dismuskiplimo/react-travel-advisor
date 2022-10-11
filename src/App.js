@@ -5,6 +5,7 @@ import { getPlacesData } from "./api";
 
 const App = () => {
     const [places, setPlaces] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     const [coordinates, setCoordinates] = useState({lat: 0, lng: 0});
     const [defaultCenterCoordinates, setDefaultCenterCoordinates] = useState({lat: 0, lng: 0});
@@ -22,11 +23,14 @@ const App = () => {
 
     useEffect(() => {
         document.title = "Home Page";
+        setIsLoading(true);
 
         getPlacesData(type, bounds.sw, bounds.ne)
         .then((response) => {
-            setPlaces(response.filter(place => place.rating !== undefined && Number(place.rating) >= rating));
+            setPlaces(response?.filter(place => place.name && place.num_reviews > 0 &&  place.rating !== undefined && Number(place.rating) >= rating));
+            setIsLoading(false);
         });
+        
     }, [type, coordinates, bounds, rating]);
     
     return (
@@ -43,6 +47,7 @@ const App = () => {
                             rating={rating}
                             setType={setType}
                             setRating={setRating}
+                            isLoading={isLoading}
                         />
                     </div>
 
