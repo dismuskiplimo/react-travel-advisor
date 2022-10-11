@@ -13,7 +13,7 @@ const PlaceDetails = ({place}) => {
                 
                 
                 <div className="d-flex justify-content-between text-muted">
-                    <Rating value={place.rating} readOnly></Rating>
+                    <Rating value={place.rating !== undefined ? place.rating : null} max={5} readOnly></Rating>
                     <small>out of {place.num_reviews} reviews</small>
                 </div>
                 

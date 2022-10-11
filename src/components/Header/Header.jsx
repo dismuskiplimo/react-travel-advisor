@@ -1,10 +1,23 @@
-import React from "react";
+import React, {useState} from "react";
 import {Autocomplete} from "@react-google-maps/api";
 
 import "./Header.css";
 
 
-const Header = () => {
+const Header = ({setCoordinates}) => {
+    const [autocomplete, setAutocomplete] = useState(null);
+
+    const onPlaceChanged = () => {
+        const lat = autocomplete.getPlace().geometry.location.lat();
+        const lng = autocomplete.getPlace().geometry.location.lng();
+
+        setCoordinates({lat: lat, lng: lng});
+    }
+
+    const onLoad = (e) => {
+        setAutocomplete(e);
+    }
+
     return (
         <nav className="navbar navbar-expand-lg" style={{backgroundColor: '#e3f2fd'}}>
             <div className="container-fluid">
@@ -18,18 +31,12 @@ const Header = () => {
                             <a className="nav-link active" aria-current="page" href="/">Home</a>
                         </li>
 
-                        <li>
-                            {/* <Autocomplete> */}
-                                <div>
-
-                                </div>
-                            {/* </Autocomplete> */}
-                        </li>
                     </ul>
 
                     <form className="d-flex" role="search">
-                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                        <button className="btn btn-outline-success" type="submit">Search</button>
+                        <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
+                            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                        </Autocomplete>
                     </form>
                 </div>
             </div>

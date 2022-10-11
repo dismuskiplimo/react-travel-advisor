@@ -3,13 +3,11 @@ import {PlaceDetails} from "../";
 
 import "./List.css";
 
-const List = ({places}) => {
-    const [type, setType] = useState('restaurants');
-    const [rating, setRating] = useState(0);
-
+const List = ({places, childClicked, type, setType, rating, setRating}) => {
+    
     useEffect(() => {
-        
-    }, [type, rating]);
+        console.log({childClicked});
+    }, [childClicked]);
 
     return (
         <div>

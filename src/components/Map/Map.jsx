@@ -5,7 +5,7 @@ import Rating from "@material-ui/lab/Rating";
 import defaultImage from "../../img/default.jpg";
 import "./Map.css";
 
-const Map = ({setCoordinates, setBounds, coordinates, defaultCenterCoordinates, places}) => {
+const Map = ({setCoordinates, setBounds, coordinates, defaultCenterCoordinates, places, setChildClicked}) => {
     const [width, setWidth] = useState(window.innerWidth);
 
     useEffect(() => {
@@ -18,7 +18,7 @@ const Map = ({setCoordinates, setBounds, coordinates, defaultCenterCoordinates, 
         <div className="mapContainer">
             
             <GoogleMapReact
-                bootstrapURLKeys={{key: 'AIzaSyD5in7m-Kujo9m1nzW_Usguwjb-7GwQCLA'}}
+                bootstrapURLKeys={{key: 'AIzaSyDEKOsj5q3cJHiqxL1GxzVOnHY_lX5DvhA'}}
                 defaultCenter={defaultCenterCoordinates}
                 center={coordinates}
                 defaultZoom={14}
@@ -35,7 +35,7 @@ const Map = ({setCoordinates, setBounds, coordinates, defaultCenterCoordinates, 
                         sw: e.marginBounds.sw
                     });
                 }}
-                onChildClick={()=>{}}
+                onChildClick={(e)=> setChildClicked(e)}
             >
                 {places?.map((place, index) => (
                     <div 
@@ -51,7 +51,7 @@ const Map = ({setCoordinates, setBounds, coordinates, defaultCenterCoordinates, 
                             <div className="paper">
                                 <strong>{ place.name }</strong>
                                 <img src={ place.photo ? place.photo.images.large.url : defaultImage } alt={place.name}/>
-                                <Rating size="small" value={place.rating} readOnly></Rating>
+                                <Rating size="small" value={place.rating !== undefined ? place.rating : null} max={5} readOnly></Rating>
                             </div>
                         )}
                     </div>
